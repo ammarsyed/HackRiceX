@@ -11,7 +11,7 @@ import{
     Button
 } from 'reactstrap';
 
-class login extends Component{
+class LoginButton extends Component{
 
     constructor(props) {
         super(props);
@@ -30,17 +30,23 @@ class login extends Component{
 
     render(){
         return(
-            <div>
+
+            <Container>
                 <Button 
-                        color="dark" 
-                        style={{marginBottom: '2rem'}}
+                    color="dark" 
+                    style={{marginBottom: '2rem'}}
+                    //Callback function has no reference to this, bind 
+                    onClick = {function(){
+                        console.log("Clicked the LoginButton!");
+                    }.bind(this)}
                 >
                     Login
                 </Button>
-            </div>
+            </Container>
+
         );
     }
 
 }
 
-export default login;
+export default LoginButton;
