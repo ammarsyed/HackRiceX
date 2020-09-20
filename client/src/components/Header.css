@@ -6,12 +6,13 @@
     position: sticky;
     z-index: 100;
     box-shadow: 0px 5px 8px -3px black;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 
 .header__left {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .header__left > img {
@@ -58,7 +59,8 @@
     align-items: center;
     padding: 0 30px;
     cursor: pointer;
-    margin-left: 120px;
+    margin-left: 60px;
+    margin-right: 60px;
 }
 
 .header__option:hover {
@@ -81,6 +83,8 @@
 
 .header__option--active {
     border-bottom: 4px solid whitesmoke;
+    margin-left: 60px;
+    margin-right: 60px;
 }
 
 .header__right {
@@ -137,5 +141,6 @@
     font-size: 20px;
     margin-bottom: -10px;
     font-family: 'Roboto', sans-serif;
+    align-content: center;
 }
 

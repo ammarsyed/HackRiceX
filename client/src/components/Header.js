@@ -14,6 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { AuthContext } from "./firebase";
 
 const Header =(props)=>{
+    console.log(window.location.pathname);
     const {currentUser} = useContext(AuthContext);
         return(
             <div className="header">
@@ -40,20 +41,20 @@ const Header =(props)=>{
                     </li>*/
                 }
                 <div className="header__middle">
-                    <div className="header__option--active" onClick={() => {
-                        window.location.href="/feed";
+                    <div className={window.location.pathname=="/feed"?"header__option--active":"header__option"} onClick={() => {
+                        window.location.pathname="/feed";
                     }}>
                             <RecentActorsIcon fontSize='large'/>
                     </div>
                     
-                    <div className="header__option" onClick={() => {
-                        window.location.href="/contacts";
+                    <div className={window.location.pathname=="/profile"?"header__option--active":"header__option"} onClick={() => {
+                        window.location.pathname="/profile";
                     }}>
                         <PersonIcon fontSize='large'/>
                     </div>
 
-                    <div className="header__option" onClick={() => {
-                        window.location.href="/info";
+                    <div className={window.location.pathname=="/info"?"header__option--active":"header__option"} onClick={() => {
+                        window.location.pathname="/info";
                     }}>
                         <InfoIcon fontSize='large'/>
                     </div>
@@ -61,14 +62,14 @@ const Header =(props)=>{
                 </div>
     
                 <div className="header__right">
-                    <div style= {{marginTop: "0px"}} className="header__avatar">
+                    <div style= {{marginTop: "15px"}} className="header__avatar">
                         <Avatar alt="Sample User" src=""/>
-                        <h4 style= {{marginLeft: "0px"}}>Sample User</h4>
+                        <h4 style= {{marginLeft: "0px", fontSize: 15}}>{currentUser.email}</h4>
                     </div>
                     <div className="header__logout">
                         <ExitToAppIcon  onClick={() => app.auth().signOut()}/>
                         <div className="header__logout--text">
-                          <h4 style= {{marginLeft: "40px",fontSize: 10}}>Logout</h4>  
+                          <h2 style= {{marginLeft: "40px",fontSize: 10}}>Logout</h2>  
                         </div>
                         
                     </div>                    

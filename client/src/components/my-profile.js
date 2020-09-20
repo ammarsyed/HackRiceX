@@ -3,6 +3,7 @@ import Home from "./home";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Header from './Header';
 
 
 class MyProfile extends Component {
@@ -47,7 +48,7 @@ class MyProfile extends Component {
                                 <Form.Label>Pre-existing Conditions</Form.Label>
                                 <Form.Control type="post"/>
                             </Form.Group>
-                            <Button variant="primary" type="post" href={'/'}>
+                            <Button variant="primary" type="post" href={'/info'}>
                                 Submit!
                             </Button>
                         </Form>

@@ -14,6 +14,7 @@ import Feed from './components/Feed.js';
 import PrivateRoute from './components/privateroute'
 import "./app.css"
 import { useStateValue } from "./components/StateProvider";
+import Info from './components/Info';
 // class App extends Component {
 //     render() {
 //         return (
@@ -33,14 +34,13 @@ function App() {
 
     return (
         <AuthProvider>
-            <div>
-
                 <PrivateRoute exact path="/feed" component={Feed} />
-            </div>
-            
+                <PrivateRoute exact path="/info" component={Info} />
+                <PrivateRoute exact path="/profile" component={MyProfile} />
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/signup" component={Signup} />
+                
             </AuthProvider>
     )
 }
