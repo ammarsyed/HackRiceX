@@ -1,11 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Feed.css";
 import MessageSender from "./MessageSender";
 import Post from "./Post.js";
+
+import { db } from "./firebase";
+
 export default function Feed() {
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    db.collection("posts").orderBy("timestamp", "desc").onSnapshot(snapshot => (
+      setPosts(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+    ));
+  },[])
+
+
     return (
         <div className="feed">
-            <MessageSender />
+        <MessageSender />
+
+        {/* {posts.map((post) => (
+          <Post
+            key={post.id}
+            profilePic={post.data.profilePic}
+            messsage={post.data.message}
+            timestamp={post.data.timestamp}
+            username={post.data.username}
+            image={post.data.image}
+          
+          />
+        )
+  )} */}
+
             <Post profilePic="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwearetenzing.com%2Fwp-content%2Fuploads%2F2019%2F03%2Fblank-head-profile-pic-for-a-man.jpg&imgrefurl=https%3A%2F%2Fwearetenzing.com%2Fdt_team%2Ftakafumi-fukuroi%2Fblank-head-profile-pic-for-a-man%2F&tbnid=INAeyuyIb_28bM&vet=12ahUKEwiR7PyV9fbrAhXH0FMKHRoTA1cQMygMegUIARDkAQ..i&docid=8qzL6m3tcE4l5M&w=431&h=408&q=profilepic&ved=2ahUKEwiR7PyV9fbrAhXH0FMKHRoTA1cQMygMegUIARDkAQ"
                 message="Wow this works"
                 timestamp="This is a timestamp"

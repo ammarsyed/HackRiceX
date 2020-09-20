@@ -4,16 +4,27 @@ import VideocamIcon from "@material-ui/icons/Videocam";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary"
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import './MessageSender.css';
+import db from "./firebase";
+import firebase from "firebase";
 
 
 function MessageSender() {
 
-const[input,setInput] = useState('')
+    const [input, setInput] = useState('');
     const [imageUrl, setImageUrl] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
+        db.collection('posts').add({
+            // message: input,
+            // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            // profilePic: user.displayName,
+            // username: user.displayName,
+            // image: imageUrl,
+            
+        })
+
 
         setInput("");
         setImageUrl("");
@@ -43,7 +54,7 @@ const[input,setInput] = useState('')
                     <PhotoLibraryIcon style={{ color: "green" }} />
                     <h3>Photo/Video</h3>
                 </div>
-                <div>
+                <div className="messageSender_option">
                     <InsertEmoticonIcon style={{ color: "orange" }} />
                     <h3>Feeling/Activity</h3>
                 </div>

@@ -2,7 +2,7 @@ import firebase from "firebase";
 //import * as firebase from "firebase/app";
 import React, {useEffect,useState} from "react";
 //import "firebase/auth";
-//require('firebase/auth');
+require('firebase/auth');
 
 // app is firebaseapp
 const config ={
@@ -16,10 +16,17 @@ const config ={
     measurementId: "G-5RGB6GJRK5"
   }
 
-//const db = app.firestore();
-export const app = firebase.initializeApp(config);
+
+const app = firebase.initializeApp(config);
 //const auth = app.auth();
 
+export const db = app.firestore(); //added
+
+// adding the stuff below
+export const auth = firebase.auth(); //added
+
+
+// stopped adding
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -47,3 +54,4 @@ export const AuthProvider = ({ children }) => {
       </AuthContext.Provider>
     );
 };
+export default app;

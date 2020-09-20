@@ -1,7 +1,7 @@
   
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import { app } from "./firebase";
+import app from "./firebase";
 import { AuthContext } from "./firebase";
 
 
@@ -13,7 +13,7 @@ const SignUp = ({ history }) => {
       await app
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value);
-      history.push("/");
+      history.push("/feed");
     } catch (error) {
       alert(error);
     }
@@ -39,6 +39,7 @@ const SignUp = ({ history }) => {
         </label>
         <button type="submit">Sign Up</button>
       </form>
+      <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   );
 };
