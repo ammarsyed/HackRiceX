@@ -1,3 +1,75 @@
+.header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: darkcyan;
+    position: sticky;
+    z-index: 100;
+    box-shadow: 0px 5px 8px -3px black;
+}
+
+.header__left {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .header__left > img {
     height: 80px;
 }
+
+.header__input {
+    display: flex;
+    align-items: center;
+    background-color: rgb(1, 99, 99);
+    padding: 10px;
+    margin-left: 0px;
+    border-radius: 50px;
+}
+
+.header__input > input{
+    border: none;
+    background-color: transparent;
+    outline-width: 0;
+}
+
+.header__middle {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 0px;
+    margin-left: 20px;
+}
+
+.header__option > .MuiSvgIcon-root {
+    color: rgb(61, 61, 61);
+    font-size: 60px;
+}
+
+.header__option:hover > .MuiSvgIcon-root {
+    color: white;
+}
+
+.header__option {
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    cursor: pointer;
+}
+
+.header__option:hover {
+    background-color: darkcyan;
+    border-radius: 10px;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: none;
+}
+
+.header__avatar {
+    display: flex;
+    align-items: center;
+}
+
+.header__avatar > h4 {
+    margin-left: 10px;
+}
+
