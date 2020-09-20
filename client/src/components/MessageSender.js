@@ -1,27 +1,30 @@
 import { Avatar } from "@material-ui/core";
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import VideocamIcon from "@material-ui/icons/Videocam";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary"
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import './MessageSender.css';
-import db from "./firebase";
+import app from "./firebase";
 import firebase from "firebase";
+import { AuthContext } from "./firebase";
 
 
 function MessageSender() {
 
+    const {currentUser} = useContext(AuthContext);
+    console.log(currentUser);
     const [input, setInput] = useState('');
     const [imageUrl, setImageUrl] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        db.collection('posts').add({
-            // message: input,
-            // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            // profilePic: user.displayName,
-            // username: user.displayName,
-            // image: imageUrl,
+        app.firestore().collection('posts').add({
+            message: input,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            profilePic: currentUser.email,
+            username: currentUser.email,
+            image: imageUrl,
             
         })
 

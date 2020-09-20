@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Component } from 'react';
 import "./Header.css";
 import Navbar from "./Navbar";
@@ -11,9 +11,10 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import app from 'firebase';
 import Avatar from '@material-ui/core/Avatar';
+import { AuthContext } from "./firebase";
 
-class Header extends Component{
-    render() {
+const Header =(props)=>{
+    const {currentUser} = useContext(AuthContext);
         return(
             <div className="header">
                 <div className="header__left">
@@ -60,18 +61,22 @@ class Header extends Component{
                 </div>
     
                 <div className="header__right">
-                    <div className="header__avatar">
+                    <div style= {{marginTop: "0px"}} className="header__avatar">
                         <Avatar alt="Sample User" src=""/>
-                        <h4>Sample User</h4>
+                        <h4 style= {{marginLeft: "0px"}}>Sample User</h4>
                     </div>
                     <div className="header__logout">
                         <ExitToAppIcon  onClick={() => app.auth().signOut()}/>
+                        <div className="header__logout--text">
+                          <h4 style= {{marginLeft: "40px",fontSize: 10}}>Logout</h4>  
+                        </div>
+                        
                     </div>                    
                 </div>
             </div>
     
         );
-    } 
+    
 }
 
 export default Header;

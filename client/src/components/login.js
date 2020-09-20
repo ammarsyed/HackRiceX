@@ -4,7 +4,7 @@
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import InputBox from './InputBox';
 
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "./firebase";
 import { AuthContext, auth } from "./firebase";
@@ -21,8 +21,32 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useStateValue } from "./StateProvider";
+import { actionTypes } from "./reducer";
 
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 const Login = ({ history }) => {
+  const [state, dispatch] = useStateValue();
+  const classes = useStyles();
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
@@ -30,7 +54,12 @@ const Login = ({ history }) => {
       try {
         await app
           .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
+          .signInWithEmailAndPassword(email.value, password.value).then(result => {
+            dispatch({
+              type: actionTypes.SET_USER,
+              user: result.user,
+            })
+          });
         history.push("/feed");
       } catch (error) {
         alert(error);
@@ -44,42 +73,18 @@ const Login = ({ history }) => {
   if (currentUser) {
     return <Redirect to="/feed" />;
   }
-
+  
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <img src="https://i.imgur.com/xdWq11g.png"/>
         <Typography component="h1" variant="h5">
-          Sign up
+          CovidConnect
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleLogin}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -88,6 +93,7 @@ const Login = ({ history }) => {
                 id="email"
                 label="Email Address"
                 name="email"
+                type="email"
                 autoComplete="email"
               />
             </Grid>
@@ -103,31 +109,31 @@ const Login = ({ history }) => {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
+            style={{backgroundColor:"darkCyan", color:"white"}}
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Login
           </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
+          <Grid container>
+            <Grid item xs>
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
+
   </Container>
   );
 };

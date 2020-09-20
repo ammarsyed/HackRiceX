@@ -13,6 +13,7 @@ import { AuthProvider } from "./components/firebase"
 import Feed from './components/Feed.js';
 import PrivateRoute from './components/privateroute'
 import "./app.css"
+import { useStateValue } from "./components/StateProvider";
 // class App extends Component {
 //     render() {
 //         return (
@@ -27,11 +28,13 @@ import "./app.css"
 // }
 
 function App() {
-    const user = null;
+    // const user = null;
+    const [{ user }, dispatch] = useStateValue();
 
     return (
         <AuthProvider>
-            <div className = "app_body">
+            <div>
+
                 <PrivateRoute exact path="/feed" component={Feed} />
             </div>
             

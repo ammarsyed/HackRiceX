@@ -25,33 +25,32 @@ export const db = app.firestore(); //added
 // adding the stuff below
 export const auth = firebase.auth(); //added
 
-
-// stopped adding
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState(null);
-    const [pending, setPending] = useState(true);
-  
-    useEffect(() => {
-      app.auth().onAuthStateChanged((user) => {
-        setCurrentUser(user)
-        setPending(false)
-      });
-    }, []);
-  
-    if(pending){
-      return <>Loading...</>
-    }
-  
-    return (
-      <AuthContext.Provider
-        value={{
-          currentUser
-        }}
-      >
-        {children}
-      </AuthContext.Provider>
-    );
+  const [currentUser, setCurrentUser] = useState(null);
+  const [pending, setPending] = useState(true);
+
+  useEffect(() => {
+    app.auth().onAuthStateChanged((user) => {
+      setCurrentUser(user)
+      setPending(false)
+    });
+  }, []);
+
+  if(pending){
+    return <>Loading...</>
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        currentUser
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
+// stopped adding
 export default app;
