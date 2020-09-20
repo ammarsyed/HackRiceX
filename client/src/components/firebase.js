@@ -1,9 +1,11 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase";
+//import * as firebase from "firebase/app";
 import React, {useEffect,useState} from "react";
-import "firebase/auth";
+//import "firebase/auth";
+//require('firebase/auth');
 
-// firebase config
-export const app = firebase.initializeApp = ({
+// app is firebaseapp
+const config ={
     apiKey: "AIzaSyCR63igynnSAB69ypWZ7GXOndjzyfpYCP0",
     authDomain: "covidconnect-440d7.firebaseapp.com",
     databaseURL: "https://covidconnect-440d7.firebaseio.com",
@@ -12,7 +14,11 @@ export const app = firebase.initializeApp = ({
     messagingSenderId: "979873456779",
     appId: "1:979873456779:web:a43b719f7d2b6b9d206a8e",
     measurementId: "G-5RGB6GJRK5"
-  });
+  }
+
+//const db = app.firestore();
+export const app = firebase.initializeApp(config);
+//const auth = app.auth();
 
 export const AuthContext = React.createContext();
 

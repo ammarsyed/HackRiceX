@@ -11,19 +11,24 @@ import { Jumbotron } from './components/Jumbotron';
 import Header from './components/Header';
 import { AuthProvider } from "./components/firebase"
 import Feed from './components/Feed.js';
+
+
+
 class App extends Component {
 
     render() {
         return (
             <AuthProvider>
-                    <Header></Header>
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/signup" component={Signup} />
-                    <Route exact path="/feed" component={Feed}/>
+                <Header></Header>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/feed" component={Feed}/>
 
             </AuthProvider>
         );
     }
 }
+
+
 
 export default App;

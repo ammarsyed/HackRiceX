@@ -6,7 +6,7 @@
 
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import {app} from "./firebase";
+import { app } from "./firebase";
 import { AuthContext } from "./firebase";
 
 const Login = ({ history }) => {
@@ -28,9 +28,9 @@ const Login = ({ history }) => {
 
   const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
+  // if (currentUser) {
+  //   return <Redirect to="/feed" />;
+  // }
 
   return (
     <div>

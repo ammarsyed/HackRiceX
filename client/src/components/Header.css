@@ -22,8 +22,10 @@
     align-items: center;
     background-color: rgb(1, 99, 99);
     padding: 10px;
-    margin-left: 0px;
+    margin-left: 20px;
     border-radius: 50px;
+    height: 50px;
+    margin-top: 20px;
 }
 
 .header__input > input{
@@ -37,12 +39,13 @@
     flex: 1;
     justify-content: center;
     padding: 0px;
-    margin-left: 20px;
+    margin-left: -90px;
 }
 
 .header__option > .MuiSvgIcon-root {
     color: rgb(61, 61, 61);
     font-size: 60px;
+    margin-bottom: 0px;
 }
 
 .header__option:hover > .MuiSvgIcon-root {
@@ -52,16 +55,37 @@
 .header__option {
     display: flex;
     align-items: center;
-    padding: 0 50px;
+    padding: 0 30px;
     cursor: pointer;
+    margin-left: 80px;
+}
+
+.header__option--active > .MuiSvgIcon-root {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-size: 120px;
+    margin-top: -10px;
+    margin-bottom: -60px;
+    padding: 0 30px;
+}
+
+.header__option--active {
+    border-bottom: 4px solid whitesmoke;
+}
+
+.header__option--active:hover {
+    background-color: rgb(0, 167, 167);
+    border-bottom: 4px solid whitesmoke;
+    border-radius: 10px;
 }
 
 .header__option:hover {
-    background-color: darkcyan;
+    background-color: rgb(0, 167, 167);
     border-radius: 10px;
     align-items: center;
-    padding: 0 30px;
-    border-bottom: none;
+    border-bottom: 4px solid whitesmoke;
 }
 
 .header__avatar {
